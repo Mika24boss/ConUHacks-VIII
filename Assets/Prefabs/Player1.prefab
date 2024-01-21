@@ -251,5 +251,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9179274135973569980, guid: 254d90e53c553c84c85eb1847739b724, type: 3}
   bulletForce: 1
   fireCooldown: 0.8
-  cheapBulletDeviation: 0
+  cheapBulletDeviation: 5
   isCheap: 0
+  isBig: 0
