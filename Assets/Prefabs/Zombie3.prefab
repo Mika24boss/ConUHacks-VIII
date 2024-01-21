@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6672084706178783249}
   - component: {fileID: 6683864017794352481}
   - component: {fileID: 274873346824832352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombie3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.14000002, y: 0.28000003}
+  m_Size: {x: 0.09, y: 0.28000003}
   m_Direction: 0
 --- !u!114 &6683864017794352481
 MonoBehaviour:
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  gameController: {fileID: 0}
 --- !u!50 &274873346824832352
 Rigidbody2D:
   serializedVersion: 4
@@ -149,7 +150,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -160,5 +161,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 5

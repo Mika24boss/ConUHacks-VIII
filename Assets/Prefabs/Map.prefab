@@ -5746,7 +5746,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1863873728924176423}
   - component: {fileID: 4260075090415156628}
-  - component: {fileID: 2882065382034599809}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -5783,21 +5782,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &2882065382034599809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4107179758784580525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994be7b612ab7a44d99d186c2c609526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  xReset: -20
-  xOffset: 40
 --- !u!1 &4213869153734794902
 GameObject:
   m_ObjectHideFlags: 0
@@ -5810,7 +5794,7 @@ GameObject:
   - component: {fileID: 7218031192764520733}
   - component: {fileID: 6560106018776865075}
   - component: {fileID: 8269378338519250813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6467,7 +6451,7 @@ GameObject:
   - component: {fileID: 8241846977516614991}
   - component: {fileID: 8051333800188323751}
   - component: {fileID: 983637574782841503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7121,6 +7105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8954926549104415560}
+  - component: {fileID: 8610005908722783841}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -7145,6 +7130,23 @@ Transform:
   - {fileID: 1534795303902679447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8610005908722783841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180933113758261537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994be7b612ab7a44d99d186c2c609526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  xReset: -20
+  xOffset: 40
+  gridTransform1: {fileID: 1863873728924176423}
+  gridTransform2: {fileID: 1534795303902679447}
 --- !u!1 &5718488401511692599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7155,7 +7157,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1534795303902679447}
   - component: {fileID: 5930092747432419984}
-  - component: {fileID: 4605359946993973819}
   m_Layer: 0
   m_Name: Grid (1)
   m_TagString: Untagged
@@ -7192,18 +7193,3 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &4605359946993973819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5718488401511692599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994be7b612ab7a44d99d186c2c609526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  xReset: -20
-  xOffset: 40

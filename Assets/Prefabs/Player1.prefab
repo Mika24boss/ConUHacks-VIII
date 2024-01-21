@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1445631010706719707}
   - component: {fileID: 1936181023565756087}
   - component: {fileID: 1861239398285001701}
+  - component: {fileID: 2576681018085412712}
   - component: {fileID: 8619809600348946403}
   - component: {fileID: 6248805772779119847}
   m_Layer: 0
@@ -145,7 +146,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 5
 --- !u!114 &1861239398285001701
 MonoBehaviour:
@@ -162,6 +163,42 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 1936181023565756087}
   movement: {x: 0, y: 0}
+  gameController: {fileID: 0}
+--- !u!70 &2576681018085412712
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718363643735572676}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 0}
+  m_Size: {x: 0.17, y: 0.31}
+  m_Direction: 0
 --- !u!70 &8619809600348946403
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,8 +231,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.19999999, y: 0.27999997}
+  m_Offset: {x: -0.03, y: 0}
+  m_Size: {x: 0.09, y: 0.27999997}
   m_Direction: 0
 --- !u!114 &6248805772779119847
 MonoBehaviour:
@@ -210,6 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 3670062777852144576}
-  bulletPrefab: {fileID: 0}
-  bulletForce: 0
-  firerate: 0
+  bulletPrefab: {fileID: 9179274135973569980, guid: 254d90e53c553c84c85eb1847739b724, type: 3}
+  bulletForce: 1
+  fireCooldown: 0.5
