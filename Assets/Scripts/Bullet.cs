@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator DeleteMyself()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(6);
         Destroy(gameObject);
     }
 }
