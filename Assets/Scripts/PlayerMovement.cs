@@ -10,25 +10,20 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 movement;
 
     public GameController gameController;
-
-    private bool canMove = true;
+    
+    public bool inverted = false;
 
     // Update is called once per frame
     public void Update()
     {
         // input
-        if (!canMove) movement.y = 0;
-        else movement.y = Input.GetAxisRaw("Vertical");
+        movement.y = Input.GetAxisRaw("Vertical");
+        if (inverted) movement.y *= -1;
     }
 
     public void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
-    }
-
-    public void GameOver()
-    {
-        canMove = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

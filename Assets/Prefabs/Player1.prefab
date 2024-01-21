@@ -164,6 +164,7 @@ MonoBehaviour:
   rb: {fileID: 1936181023565756087}
   movement: {x: 0, y: 0}
   gameController: {fileID: 0}
+  inverted: 0
 --- !u!70 &2576681018085412712
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -249,4 +250,6 @@ MonoBehaviour:
   shootingPoint: {fileID: 3670062777852144576}
   bulletPrefab: {fileID: 9179274135973569980, guid: 254d90e53c553c84c85eb1847739b724, type: 3}
   bulletForce: 1
-  fireCooldown: 0.5
+  fireCooldown: 0.8
+  cheapBulletDeviation: 0
+  isCheap: 0

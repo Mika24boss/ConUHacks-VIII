@@ -931,7 +931,8 @@ MonoBehaviour:
   - {fileID: 803125138054215350, guid: e6f9f88fd946400408c2a508b5194eb1, type: 3}
   spawnCooldown: 1
   passivePtCooldown: 1
-  difficultyIncreaseCooldown: 12
+  difficultyIncreaseCooldown: 30
+  randomEventCooldown: 6
   scroller: {fileID: 870622131}
   eventText: {fileID: 536636414}
   scoreText: {fileID: 872201462}
@@ -993,8 +994,8 @@ PrefabInstance:
       value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 6248805772779119847, guid: 1268bfbd0e7784e40be5ed2acae44e63, type: 3}
-      propertyPath: fireCooldown
-      value: 0.8
+      propertyPath: cheapBulletDeviation
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

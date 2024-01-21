@@ -6,8 +6,12 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletForce;
     public float fireCooldown;
-    private float _nextfire;
+    public float cheapBulletDeviation;
 
+    public bool isCheap;
+    public bool isBig;
+    
+    private float _nextfire;
     
     // Update is called once per frame
     void Update()
@@ -24,6 +28,13 @@ public class Shoot : MonoBehaviour
         if (!(Time.time > _nextfire)) return;
         _nextfire = Time.time + fireCooldown;
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation) as GameObject;
+        if (isCheap) bullet.GetComponent<Bullet>().direction = Random.Range(-cheapBulletDeviation, cheapBulletDeviation);
+        if (isBig)
+        {
+            bullet.transform.localScale *= 4;
+            bullet.GetComponent<Bullet>().speed *= 2f;
+        }
+
         bullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.right * bulletForce, ForceMode2D.Impulse);
     }
 }

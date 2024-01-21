@@ -7,10 +7,9 @@ using Random = UnityEngine.Random;
 public class Enemy3 : MonoBehaviour
 {
     
-    public float speed;
-    
     public GameController gameController;
     
+    private float _speed = 4f;
     private float x;
     private float y;
 
@@ -23,16 +22,20 @@ public class Enemy3 : MonoBehaviour
     void Target()
     {
         x = -50;
-        y = Random.Range(-50, 50);
-        
+        y = transform.position.y > 0 ? Random.Range(-50, 0) : Random.Range(0, 50);
     }
 
     void Update()
     {
         var position = transform.position;
-        position = Vector2.MoveTowards(position, position + new Vector3(x, y, 0), speed * Time.deltaTime);
+        position = Vector2.MoveTowards(position, position + new Vector3(x, y, 0), _speed * Time.deltaTime);
         transform.position = position;
         if (transform.position.x < -20) Destroy(gameObject);
+    }
+    
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
