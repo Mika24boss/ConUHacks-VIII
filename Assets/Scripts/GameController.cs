@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -114,6 +116,7 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
+        if (_gameOver) return;
         _gameOver = true;
         if (currentEvent != null) StopCoroutine(currentEvent);
         scroller.GameOver();
@@ -184,7 +187,8 @@ public class GameController : MonoBehaviour
         {
             random = Random.Range(0, 16);
         } while (_lastEvent.Contains(random) ||
-                 Time.time + 2 > _nextDifficultyTime && random is 0 or 1 or 2 or 3 or 8);
+                 Time.time + 2 > _nextDifficultyTime && random is 0 or 1 or 2 or 3 or 8 ||
+                 !CanDoFakeEnd() && random is 8);
 
         switch (random)
         {
@@ -259,5 +263,13 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         _shoot.isBig = false;
+    }
+
+    private bool CanDoFakeEnd()
+    {
+        var position = player.transform.position;
+        var enemyInRange = Physics2D.OverlapArea(position - new Vector3(0, 3, 0), position + new Vector3(6, 3, 0),
+            LayerMask.GetMask("Enemy"));
+        return enemyInRange is null;
     }
 }
