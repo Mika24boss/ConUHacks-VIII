@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -27,6 +26,7 @@ public class GameController : MonoBehaviour
     public TMP_Text eventText;
     public TMP_Text scoreText;
     public GameObject blackScreen;
+    public GameObject forReal;
 
     private float _nextSpawnTime;
     private float _nextPointTime;
@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
     private float _nextEventTime;
     private float _enemySpeed = 4f;
     private int _score;
+    private int[] _lastEvent = { 8, -1 };
     private bool _gameOver;
     private bool _isWave;
 
@@ -114,17 +115,19 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         _gameOver = true;
+        if (currentEvent != null) StopCoroutine(currentEvent);
         scroller.GameOver();
         _playerMovement.enabled = false;
         _shoot.enabled = false;
         eventText.text = "";
+        forReal.SetActive(_lastEvent.Contains(8) && !_lastEvent.Contains(-1));
         object[] parms2 = { 0.3f, true };
         StartCoroutine(BlackThingDown(parms2));
     }
 
-    IEnumerator BlackThingDown(object[] parms)
+    private IEnumerator BlackThingDown(object[] parms)
     {
-        float speed = (float)parms[0];
+        var speed = (float)parms[0];
         var rectTransform = blackScreen.GetComponent<RectTransform>();
         if (rectTransform.offsetMin.y - speed <= 0)
         {
@@ -145,7 +148,7 @@ public class GameController : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
             object[] parms2 = { speed * 1.2f, parms[1] };
-            StartCoroutine(BlackThingDown(parms2));
+            currentEvent = StartCoroutine(BlackThingDown(parms2));
         }
     }
 
@@ -176,16 +179,24 @@ public class GameController : MonoBehaviour
 
     private void DoEvent()
     {
-        var random = Random.Range(0, 16);
+        int random;
+        do
+        {
+            random = Random.Range(0, 16);
+        } while (_lastEvent.Contains(random) ||
+                 Time.time + 2 > _nextDifficultyTime && random is 0 or 1 or 2 or 3 or 8);
+
         switch (random)
         {
             case 0:
             case 1:
+                _lastEvent = new[] { 0, 1 };
                 currentEvent = StartCoroutine(FillEvent(new object[] { "Controls inverted!?" }));
                 _playerMovement.inverted = !_playerMovement.inverted;
                 break;
             case 2:
             case 3:
+                _lastEvent = new[] { 2, 3 };
                 currentEvent = StartCoroutine(FillEvent(new object[] { "So tired..." }));
                 var oldSpeed = _playerMovement.moveSpeed;
                 _playerMovement.moveSpeed *= 0.2f;
@@ -193,6 +204,7 @@ public class GameController : MonoBehaviour
                 break;
             case 4:
             case 5:
+                _lastEvent = new[] { 4, 5 };
                 currentEvent = StartCoroutine(FillEvent(new object[] { "BRRRRRRRRRRRRR\n(Hold down space)" }));
                 var oldCooldown = _shoot.fireCooldown;
                 _shoot.fireCooldown = 0.05f;
@@ -200,19 +212,25 @@ public class GameController : MonoBehaviour
                 break;
             case 6:
             case 7:
-                currentEvent = StartCoroutine(FillEvent(new object[] { "Dollarama bullets" }));
+                _lastEvent = new[] { 6, 7 };
+                currentEvent = StartCoroutine(FillEvent(new object[] { "Cheap bullets" }));
                 _shoot.isCheap = true;
                 StartCoroutine(RestoreCheap());
                 break;
             case 8:
+                _lastEvent = new[] { 8 };
                 object[] parms2 = { 0.3f, false };
-                StartCoroutine(BlackThingDown(parms2));
+                currentEvent = StartCoroutine(BlackThingDown(parms2));
                 break;
             case 9:
             case 10:
+                _lastEvent = new[] { 9, 10 };
                 currentEvent = StartCoroutine(FillEvent(new object[] { "BIG BULLETS" }));
                 _shoot.isBig = true;
                 StartCoroutine(RestoreBig());
+                break;
+            default:
+                _lastEvent = new[] { 11, 12, 13, 14, 15 };
                 break;
         }
     }
@@ -236,7 +254,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(8);
         _shoot.isCheap = false;
     }
-    
+
     private IEnumerator RestoreBig()
     {
         yield return new WaitForSeconds(5);

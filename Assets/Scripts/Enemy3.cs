@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -43,7 +40,10 @@ public class Enemy3 : MonoBehaviour
         if (other.gameObject.layer == 7) Target();
         if (other.gameObject.layer != 3) return;
         gameController.ZombieKill();
-        Destroy(other.gameObject);
+        if (other.gameObject.transform.localScale.x < 0.2)
+            Destroy(other.gameObject);
+        else
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(52, 0);
         Destroy(gameObject);
     }
 }

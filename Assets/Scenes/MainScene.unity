@@ -419,6 +419,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b01e1399b73eaab4384a7f3739ea9656, type: 3}
+--- !u!1 &814732672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3215349413296078699, guid: e6eb9bd9f2aef2d43acfc3bb66e2b19d, type: 3}
+  m_PrefabInstance: {fileID: 1797823580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &870622131 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8610005908722783841, guid: 8498bfdf09784b345ba4c887fb3e0f91, type: 3}
@@ -612,6 +617,7 @@ MonoBehaviour:
   eventText: {fileID: 536636414}
   scoreText: {fileID: 872201462}
   blackScreen: {fileID: 1672995444}
+  forReal: {fileID: 814732672}
 --- !u!1001 &7183716892592997776
 PrefabInstance:
   m_ObjectHideFlags: 0

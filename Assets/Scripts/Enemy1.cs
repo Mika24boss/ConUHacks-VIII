@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -28,7 +24,10 @@ public class Enemy1 : MonoBehaviour
     {
         if (other.gameObject.layer != 3) return;
         gameController.ZombieKill();
-        Destroy(other.gameObject);
+        if (other.gameObject.transform.localScale.x < 0.2)
+            Destroy(other.gameObject);
+        else
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(52, 0);
         Destroy(gameObject);
     }
 }
